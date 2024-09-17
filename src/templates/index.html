@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repository Newsletter Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">Repository Newsletter Generator</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="mb-4">
+                    {% for message in messages %}
+                        <li class="text-red-500">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form method="POST" class="space-y-4">
+            <div>
+                <label for="repo_url" class="block text-sm font-medium text-gray-700">Repository URL:</label>
+                <input type="text" id="repo_url" name="repo_url" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            
+            <div>
+                <label for="start_date" class="block text-sm font-medium text-gray-700">Start Date:</label>
+                <input type="date" id="start_date" name="start_date" value="{{ start_date }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            
+            <div>
+                <label for="end_date" class="block text-sm font-medium text-gray-700">End Date:</label>
+                <input type="date" id="end_date" name="end_date" value="{{ end_date }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Generate Newsletter
+            </button>
+        </form>
+    </div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 import os
 import json
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from config import GITHUB_TOKEN
 
 class GitHubDataCollector:
@@ -20,25 +20,25 @@ class GitHubDataCollector:
         response = requests.get(url, headers=self.headers)
         return response.json()
 
-    def get_recent_commits(self, days=7):
+    def get_recent_commits(self, start_date, end_date):
         owner, repo = self.repo_url.split("/")[-2:]
         url = f"{self.api_base_url}/repos/{owner}/{repo}/commits"
-        params = {"since": f"{days}d"}
+        params = {"since": start_date.isoformat(), "until": end_date.isoformat()}
         response = requests.get(url, headers=self.headers, params=params)
         return response.json()
 
-    def get_recent_issues(self, days=7):
+    def get_recent_issues(self, start_date, end_date):
         owner, repo = self.repo_url.split("/")[-2:]
         url = f"{self.api_base_url}/repos/{owner}/{repo}/issues"
-        params = {"state": "all", "since": f"{days}d"}
+        params = {"state": "all", "since": start_date.isoformat(), "until": end_date.isoformat()}
         response = requests.get(url, headers=self.headers, params=params)
         return response.json()
 
-    def collect_data(self):
+    def collect_data(self, start_date, end_date):
         data = {
             "repo_info": self.get_repo_info(),
-            "recent_commits": self.get_recent_commits(),
-            "recent_issues": self.get_recent_issues()
+            "recent_commits": self.get_recent_commits(start_date, end_date),
+            "recent_issues": self.get_recent_issues(start_date, end_date)
         }
         self.save_data(data)
         return data

@@ -1,0 +1,47 @@
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:05:05] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2024 16:05:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-03 to 2024-09-17
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 16:05:26] "POST / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/newsletter_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-03 to 2024-09-17
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 16:06:44] "POST / HTTP/1.1" 200 -
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:06:55] "GET / HTTP/1.1" 200 -
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:06:58] "GET / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/llm_integration.py', reloading
+ * Restarting with stat
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-08-15 to 2024-09-17
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 16:10:05] "POST / HTTP/1.1" 200 -
