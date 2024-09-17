@@ -11,6 +11,18 @@
             background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
             color: white;
         }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
@@ -29,9 +41,9 @@
                 <div id="activity-list">
                     <h3 class="font-semibold mt-2">Commits</h3>
                     <ul class="space-y-2">
-                        {% for commit in commits %}
+                        {% for commit in commits_json|from_json %}
                         <li class="border p-2 rounded hover-gradient transition duration-300">
-                            <a href="#" class="block" data-type="commit" data-item="{{ commit | tojson | safe }}">
+                            <a href="#" class="block" data-type="commit" data-item="{{ commit|tojson|forceescape }}">
                                 {{ commit.commit.message[:50] }}...
                             </a>
                         </li>
@@ -40,9 +52,9 @@
 
                     <h3 class="font-semibold mt-4">Issues</h3>
                     <ul class="space-y-2">
-                        {% for issue in issues %}
+                        {% for issue in issues_json|from_json %}
                         <li class="border p-2 rounded hover-gradient transition duration-300">
-                            <a href="#" class="block" data-type="issue" data-item="{{ issue | tojson | safe }}">
+                            <a href="#" class="block" data-type="issue" data-item="{{ issue|tojson|forceescape }}">
                                 {{ issue.title }}
                             </a>
                         </li>
@@ -51,9 +63,9 @@
 
                     <h3 class="font-semibold mt-4">Pull Requests</h3>
                     <ul class="space-y-2">
-                        {% for pr in pull_requests %}
+                        {% for pr in pull_requests_json|from_json %}
                         <li class="border p-2 rounded hover-gradient transition duration-300">
-                            <a href="#" class="block" data-type="pull_request" data-item="{{ pr | tojson | safe }}">
+                            <a href="#" class="block" data-type="pull_request" data-item="{{ pr|tojson|forceescape }}">
                                 {{ pr.title }}
                             </a>
                         </li>
@@ -65,8 +77,8 @@
             <!-- Column 3: Summary -->
             <div class="bg-white p-4 rounded shadow overflow-y-auto" style="max-height: 90vh;">
                 <h2 class="text-xl font-bold mb-4">Summary</h2>
-                <div id="summary-content">
-                    Click on an item in the second column to see its summary here.
+                <div id="summary-content" class="h-full flex items-center justify-center">
+                    <p>Click on an item in the second column to see its summary here.</p>
                 </div>
             </div>
         </div>
@@ -75,7 +87,7 @@
     <script>
         function showSummary(type, data) {
             const summaryContent = document.getElementById('summary-content');
-            summaryContent.innerHTML = '<div class="flex justify-center items-center h-full"><div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div></div>';
+            summaryContent.innerHTML = '<div class="spinner"></div>';
             
             axios.post('/summarize', {
                 type: type,
@@ -86,20 +98,30 @@
             })
             .catch(function (error) {
                 console.error('Error:', error);
-                summaryContent.innerHTML = 'An error occurred while fetching the summary.';
+                summaryContent.innerHTML = '<p class="text-red-500">An error occurred while fetching the summary.</p>';
             });
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const commitList = document.querySelector('#activity-list');
-            const summaryContainer = document.querySelector('#summary-content');
-
-            commitList.addEventListener('click', function(e) {
-                if (e.target.closest('a')) {
-                    e.preventDefault();
-                    const repoName = '{{ repo_info.full_name }}';
-                    const type = e.target.closest('a').getAttribute('data-type');
-                    const data = JSON.parse(e.target.closest('a').getAttribute('data-item'));
+            const activityList = document.querySelector('#activity-list');
+            
+            activityList.addEventListener('click', function(e) {
+                e.preventDefault();
+                const clickedItem = e.target.closest('a[data-type]');
+                if (clickedItem) {
+                    const type = clickedItem.getAttribute('data-type');
+                    const rawData = clickedItem.getAttribute('data-item');
+                    console.log('Raw data:', rawData);
+                    
+                    let data;
+                    try {
+                        data = JSON.parse(rawData);
+                    } catch (error) {
+                        console.error('Error parsing JSON:', error);
+                        console.log('Problematic JSON string:', rawData);
+                        alert('There was an error processing this item. Please check the console for details.');
+                        return;
+                    }
                     
                     showSummary(type, data);
                 }

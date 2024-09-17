@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, flash, jsonify
+from markupsafe import Markup
 from datetime import datetime, timedelta
 import traceback
 import logging
+import json
 from data_collector import GitHubDataCollector
 from newsletter_generator import generate_newsletter
 from commit_summarizer import summarize_commit, get_commit_diff
@@ -53,11 +55,12 @@ def generate_result(repo_url, start_date, end_date):
         data['end_date'] = end_date.strftime('%Y-%m-%d')
         newsletter_content = generate_newsletter(data)
         app.logger.debug("Newsletter generated successfully")
+        
         return render_template('result.html', 
                                content=newsletter_content, 
-                               commits=data['recent_commits'], 
-                               issues=data['recent_issues'],
-                               pull_requests=data.get('recent_pull_requests', []),
+                               commits_json=json.dumps(data['recent_commits'], default=str),
+                               issues_json=json.dumps(data['recent_issues'], default=str),
+                               pull_requests_json=json.dumps(data.get('recent_pull_requests', []), default=str),
                                repo_info=data['repo_info'])
     except Exception as e:
         app.logger.error(f"An error occurred: {str(e)}")
@@ -83,18 +86,27 @@ def summarize_commit_route():
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
-    item_type = request.json['type']
-    item_data = request.json['data']
+    data = request.json
+    item_type = data['type']
+    item_data = data['data']
     
     app.logger.info(f"Processing {item_type}: {item_data.get('sha', item_data.get('number', 'Unknown ID'))}")
+    app.logger.debug(f"Raw item data: {json.dumps(item_data, indent=2)}")
     
     summary = ""
-    if item_type == 'commit':
-        summary = process_commit(item_data)
-    elif item_type == 'issue':
-        summary = process_issue(item_data)
-    elif item_type == 'pull_request':
-        summary = process_pull_request(item_data)
+    try:
+        if item_type == 'commit':
+            summary = process_commit(item_data)
+        elif item_type == 'issue':
+            summary = process_issue(item_data)
+        elif item_type == 'pull_request':
+            summary = process_pull_request(item_data)
+        else:
+            raise ValueError(f"Unknown item type: {item_type}")
+    except Exception as e:
+        app.logger.error(f"Error processing {item_type}: {str(e)}")
+        app.logger.error(traceback.format_exc())
+        return jsonify({'error': str(e)}), 400
     
     app.logger.info(f"Processed {item_type} successfully")
     return jsonify({'summary': summary})
@@ -162,6 +174,10 @@ def internal_server_error(e):
     app.logger.error('An error occurred during a request.')
     app.logger.error(traceback.format_exc())
     return "An internal error occurred: " + str(e), 500
+
+@app.template_filter('from_json')
+def from_json(value):
+    return json.loads(value)
 
 if __name__ == '__main__':
     app.run(debug=True)
