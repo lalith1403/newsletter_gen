@@ -16,3 +16,6 @@ EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 REPO_URL = ""
 RECIPIENTS = []
 FREQUENCY = "weekly"
+
+# Add the GPT model configuration
+GPT_MODEL = "gpt-4o-mini"

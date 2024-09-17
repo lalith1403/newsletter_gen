@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commit Summary</title>
+</head>
+<body>
+    <h1>Commit Summary</h1>
+    <h2>Original Commit Data</h2>
+    <p><strong>Message:</strong> {{ commit_data.message }}</p>
+    <p><strong>Author:</strong> {{ commit_data.author }}</p>
+    <p><strong>Date:</strong> {{ commit_data.date }}</p>
+    
+    <h2>Changes</h2>
+    <ul>
+    {% for change in commit_data.changes %}
+        <li>{{ change.filename }} ({{ change.status }}): +{{ change.additions }}, -{{ change.deletions }}</li>
+    {% endfor %}
+    </ul>
+    
+    <h2>AI-Generated Summary</h2>
+    <p>{{ summary }}</p>
+</body>
+</html>

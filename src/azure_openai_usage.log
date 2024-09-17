@@ -45,3 +45,227 @@ HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 Newsletter generated successfully
 127.0.0.1 - - [17/Sep/2024 16:10:05] "POST / HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:20:26] "GET / HTTP/1.1" 200 -
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:21:17] "GET / HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:21:33] "GET / HTTP/1.1" 200 -
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:21:34] "GET / HTTP/1.1" 200 -
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:21:34] "GET / HTTP/1.1" 200 -
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:21:34] "GET / HTTP/1.1" 200 -
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:24:50] "GET / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 00:00:00 to 2024-09-17 00:00:00
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 16:27:40] "POST / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/newsletter_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/llm_integration.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/config.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:32:27] "GET / HTTP/1.1" 200 -
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 00:00:00 to 2024-09-17 00:00:00
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 16:32:36] "POST / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/newsletter_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 00:00:00 to 2024-09-17 00:00:00
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 16:34:09] "POST / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+Rendering index template with start_date=2024-09-10 and end_date=2024-09-17
+127.0.0.1 - - [17/Sep/2024 16:37:35] "GET / HTTP/1.1" 200 -
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 00:00:00 to 2024-09-17 00:00:00
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 16:37:46] "POST / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/newsletter_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 00:00:00 to 2024-09-17 00:00:00
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 16:40:05] "POST / HTTP/1.1" 200 -
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 00:00:00 to 2024-09-17 00:00:00
+Newsletter generated successfully
+An error occurred: 'repo_info' is undefined
+Traceback (most recent call last):
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py", line 34, in index
+    return render_template('result.html', content=newsletter_content, commits=data['recent_commits'], issues=data['recent_issues'], pull_requests=data.get('recent_pull_requests', []))
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/templates/result.html", line 101, in top-level template code
+    const repoName = '{{ repo_info.full_name }}';
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/jinja2/environment.py", line 487, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'repo_info' is undefined
+
+127.0.0.1 - - [17/Sep/2024 16:43:07] "POST / HTTP/1.1" 200 -
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 00:00:00 to 2024-09-17 00:00:00
+Newsletter generated successfully
+An error occurred: 'repo_info' is undefined
+Traceback (most recent call last):
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py", line 34, in index
+    return render_template('result.html', content=newsletter_content, commits=data['recent_commits'], issues=data['recent_issues'], pull_requests=data.get('recent_pull_requests', []))
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/templates/result.html", line 101, in top-level template code
+    const repoName = '{{ repo_info.full_name }}';
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/jinja2/environment.py", line 487, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'repo_info' is undefined
+
+127.0.0.1 - - [17/Sep/2024 16:43:24] "POST / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 00:00:00 to 2024-09-17 00:00:00
+Newsletter generated successfully
+An error occurred: 'repo_info' is undefined
+Traceback (most recent call last):
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py", line 34, in index
+    return render_template('result.html', content=newsletter_content, commits=data['recent_commits'], issues=data['recent_issues'], pull_requests=data.get('recent_pull_requests', []))
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/templates/result.html", line 100, in top-level template code
+    const repoName = '{{ repo_info.full_name }}';
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/jinja2/environment.py", line 487, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'repo_info' is undefined
+
+127.0.0.1 - - [17/Sep/2024 16:45:09] "POST / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 to 2024-09-17
+An error occurred: can't compare datetime.datetime to datetime.date
+Traceback (most recent call last):
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py", line 51, in generate_result
+    data = collector.collect_data(start_date, end_date)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/data_collector.py", line 53, in collect_data
+    "recent_pull_requests": self.get_recent_pull_requests(start_date, end_date)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/data_collector.py", line 45, in get_recent_pull_requests
+    recent_prs = [pr for pr in all_prs if start_date <= datetime.strptime(pr['updated_at'], '%Y-%m-%dT%H:%M:%SZ') <= end_date]
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/data_collector.py", line 45, in <listcomp>
+    recent_prs = [pr for pr in all_prs if start_date <= datetime.strptime(pr['updated_at'], '%Y-%m-%dT%H:%M:%SZ') <= end_date]
+TypeError: can't compare datetime.datetime to datetime.date
+
+127.0.0.1 - - [17/Sep/2024 16:46:30] "POST / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/data_collector.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 to 2024-09-17
+An error occurred: 'GitHubDataCollector' object has no attribute 'github_api'
+Traceback (most recent call last):
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py", line 51, in generate_result
+    data = collector.collect_data(start_date, end_date)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/data_collector.py", line 50, in collect_data
+    "recent_pull_requests": self.get_recent_pull_requests(start_date, end_date)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/data_collector.py", line 39, in get_recent_pull_requests
+    all_prs = self.github_api.get_pull_requests()
+AttributeError: 'GitHubDataCollector' object has no attribute 'github_api'
+
+127.0.0.1 - - [17/Sep/2024 16:48:37] "POST / HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/data_collector.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 to 2024-09-17
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 16:49:27] "POST / HTTP/1.1" 200 -

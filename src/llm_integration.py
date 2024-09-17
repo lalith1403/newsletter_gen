@@ -1,10 +1,10 @@
 # src/llm_integration.py
 
 import dspy
-from config import OPENAI_API_KEY
+from config import OPENAI_API_KEY, GPT_MODEL
 
 # Configure DSPy with OpenAI
-turbo = dspy.OpenAI(model="gpt-4", api_key=OPENAI_API_KEY)
+turbo = dspy.OpenAI(model=GPT_MODEL, api_key=OPENAI_API_KEY)
 dspy.settings.configure(lm=turbo)
 
 class RepoInsights(dspy.Signature):
