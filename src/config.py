@@ -18,4 +18,4 @@ RECIPIENTS = []
 FREQUENCY = "weekly"
 
 # Add the GPT model configuration
-GPT_MODEL = "gpt-4o-mini"
+GPT_MODEL = "gpt-3.5-turbo"

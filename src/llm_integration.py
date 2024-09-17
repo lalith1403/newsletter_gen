@@ -7,45 +7,60 @@ from config import OPENAI_API_KEY, GPT_MODEL
 turbo = dspy.OpenAI(model=GPT_MODEL, api_key=OPENAI_API_KEY)
 dspy.settings.configure(lm=turbo)
 
-class RepoInsights(dspy.Signature):
-    """Generate insights and analysis for a GitHub repository based on recent activity."""
-    repo_data = dspy.InputField(desc="Processed data about the repository")
-    summary = dspy.OutputField(desc="A concise summary of the repository's recent activity")
-    key_insights = dspy.OutputField(desc="List of key insights about the repository's activity")
-    trend_analysis = dspy.OutputField(desc="Analysis of trends in commit activity and issue management")
-    recommendations = dspy.OutputField(desc="Actionable recommendations for repository maintainers")
+class CodeAnalyzer(dspy.Signature):
+    """Analyze code changes and provide insights."""
+    commit_message = dspy.InputField()
+    diff = dspy.InputField()
+    summary = dspy.OutputField()
+    impact = dspy.OutputField()
+    code_quality = dspy.OutputField()
+    suggestions = dspy.OutputField()
 
-class InsightGenerator(dspy.Module):
-    def __init__(self):
-        super().__init__()
-        self.generate = dspy.Predict(RepoInsights)
+class IssueSummarizer(dspy.Signature):
+    """Summarize an issue and provide recommendations."""
+    title = dspy.InputField()
+    body = dspy.InputField()
+    summary = dspy.OutputField()
+    priority = dspy.OutputField()
+    suggested_action = dspy.OutputField()
 
-    def forward(self, repo_data):
-        return self.generate(repo_data=repo_data)
+class PRAnalyzer(dspy.Signature):
+    """Analyze a pull request and provide insights."""
+    title = dspy.InputField()
+    description = dspy.InputField()
+    diff = dspy.InputField()
+    summary = dspy.OutputField()
+    impact = dspy.OutputField()
+    code_quality = dspy.OutputField()
+    suggestions = dspy.OutputField()
+    related_issues = dspy.OutputField()
 
-def generate_newsletter_content(processed_data, raw_data):
-    insight_generator = InsightGenerator()
-    result = insight_generator(repo_data=processed_data)
-    
-    key_insights_html = "".join(f'<li>{insight}</li>' for insight in result.key_insights.split('\n') if insight)
-    recommendations_html = "".join(f'<li>{recommendation}</li>' for recommendation in result.recommendations.split('\n') if recommendation)
-    
-    newsletter_content = f"""
-    <h2 class="text-2xl font-semibold mt-6 mb-2">Summary</h2>
-    <p>{result.summary}</p>
-    
-    <h2 class="text-2xl font-semibold mt-6 mb-2">Key Insights</h2>
-    <ul class="list-disc pl-5 space-y-2">
-        {key_insights_html}
-    </ul>
-    
-    <h2 class="text-2xl font-semibold mt-6 mb-2">Trend Analysis</h2>
-    <p>{result.trend_analysis}</p>
-    
-    <h2 class="text-2xl font-semibold mt-6 mb-2">Recommendations</h2>
-    <ul class="list-disc pl-5 space-y-2">
-        {recommendations_html}
-    </ul>
-    """
-    
-    return newsletter_content
+def analyze_code_changes(commit_message, diff):
+    analyzer = dspy.Predict(CodeAnalyzer)
+    result = analyzer(commit_message=commit_message, diff=diff)
+    return {
+        "summary": result.summary,
+        "impact": result.impact,
+        "code_quality": result.code_quality,
+        "suggestions": result.suggestions
+    }
+
+def summarize_issue(title, body):
+    summarizer = dspy.Predict(IssueSummarizer)
+    result = summarizer(title=title, body=body)
+    return {
+        "summary": result.summary,
+        "priority": result.priority,
+        "suggested_action": result.suggested_action
+    }
+
+def analyze_pull_request(title, description, diff):
+    analyzer = dspy.Predict(PRAnalyzer)
+    result = analyzer(title=title, description=description, diff=diff)
+    return {
+        "summary": result.summary,
+        "impact": result.impact,
+        "code_quality": result.code_quality,
+        "suggestions": result.suggestions,
+        "related_issues": result.related_issues
+    }

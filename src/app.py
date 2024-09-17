@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, flash, jsonify
-from markupsafe import Markup
 from datetime import datetime, timedelta
 import traceback
 import logging
@@ -9,6 +8,7 @@ from newsletter_generator import generate_newsletter
 from commit_summarizer import summarize_commit, get_commit_diff
 from config import GITHUB_TOKEN
 from github import Github
+from llm_integration import analyze_code_changes, summarize_issue, analyze_pull_request
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Replace with a real secret key
@@ -118,27 +118,82 @@ def process_commit(commit_data):
     app.logger.info(f"Fetching diff for commit {commit_sha} in repo {repo_name}")
     diff = get_commit_diff(repo_name, commit_sha)
     
+    try:
+        analysis = analyze_code_changes(commit_data['commit']['message'], diff)
+    except Exception as e:
+        app.logger.error(f"Error in AI analysis: {str(e)}")
+        analysis = {
+            "summary": "AI analysis failed",
+            "impact": "Unknown",
+            "code_quality": "Unable to assess",
+            "suggestions": "No suggestions available due to analysis failure"
+        }
+    
     summary = f"""
-    <h3 class="text-xl font-bold mb-2">Commit Summary</h3>
-    <p><strong>SHA:</strong> {commit_sha[:7]}</p>
-    <p><strong>Author:</strong> {commit_data['commit']['author']['name']}</p>
-    <p><strong>Date:</strong> {commit_data['commit']['author']['date']}</p>
-    <p><strong>Message:</strong> {commit_data['commit']['message']}</p>
-    <h4 class="text-lg font-semibold mt-4 mb-2">Changes:</h4>
-    <pre class="bg-gray-100 p-2 rounded overflow-x-auto"><code>{diff}</code></pre>
+    <div class="space-y-4 overflow-y-auto max-h-full">
+        <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Commit Context</h3>
+            <p><strong>Repository:</strong> {repo_name}</p>
+            <p><strong>SHA:</strong> {commit_sha[:7]}</p>
+            <p><strong>Author:</strong> {commit_data['commit']['author']['name']}</p>
+            <p><strong>Date:</strong> {commit_data['commit']['author']['date']}</p>
+        </div>
+        
+        <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Commit Message</h3>
+            <p class="whitespace-pre-wrap">{commit_data['commit']['message']}</p>
+        </div>
+        
+        <div class="bg-green-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">AI Analysis</h3>
+            <p><strong>Summary:</strong> {analysis['summary']}</p>
+            <p><strong>Impact:</strong> {analysis['impact']}</p>
+            <p><strong>Code Quality:</strong> {analysis['code_quality']}</p>
+            <p><strong>Suggestions:</strong> {analysis['suggestions']}</p>
+        </div>
+        
+        <div class="bg-yellow-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Changes</h3>
+            <pre class="overflow-x-auto max-h-60 text-sm"><code>{diff}</code></pre>
+        </div>
+    </div>
     """
     return summary
 
 def process_issue(issue_data):
+    try:
+        ai_summary = summarize_issue(issue_data['title'], issue_data['body'])
+    except Exception as e:
+        app.logger.error(f"Error in AI summary: {str(e)}")
+        ai_summary = {
+            "summary": "AI summary failed",
+            "priority": "Unknown",
+            "suggested_action": "Unable to suggest action due to summary failure"
+        }
+    
     summary = f"""
-    <h3 class="text-xl font-bold mb-2">Issue Summary</h3>
-    <p><strong>Title:</strong> {issue_data['title']}</p>
-    <p><strong>Number:</strong> #{issue_data['number']}</p>
-    <p><strong>State:</strong> {issue_data['state']}</p>
-    <p><strong>Created by:</strong> {issue_data['user']['login']}</p>
-    <p><strong>Created at:</strong> {issue_data['created_at']}</p>
-    <h4 class="text-lg font-semibold mt-4 mb-2">Description:</h4>
-    <div class="bg-gray-100 p-2 rounded">{issue_data['body']}</div>
+    <div class="space-y-4 overflow-y-auto max-h-full">
+        <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Issue Context</h3>
+            <p><strong>Title:</strong> {issue_data['title']}</p>
+            <p><strong>Number:</strong> #{issue_data['number']}</p>
+            <p><strong>State:</strong> {issue_data['state']}</p>
+            <p><strong>Created by:</strong> {issue_data['user']['login']}</p>
+            <p><strong>Created at:</strong> {issue_data['created_at']}</p>
+        </div>
+        
+        <div class="bg-green-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">AI Summary</h3>
+            <p><strong>Summary:</strong> {ai_summary['summary']}</p>
+            <p><strong>Priority:</strong> {ai_summary['priority']}</p>
+            <p><strong>Suggested Action:</strong> {ai_summary['suggested_action']}</p>
+        </div>
+        
+        <div class="bg-yellow-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Description</h3>
+            <div class="whitespace-pre-wrap">{issue_data['body']}</div>
+        </div>
+    </div>
     """
     return summary
 
@@ -149,17 +204,48 @@ def process_pull_request(pr_data):
     app.logger.info(f"Fetching diff for PR #{pr_number} in repo {repo_name}")
     diff = get_pr_diff(repo_name, pr_number)
     
+    try:
+        analysis = analyze_pull_request(pr_data['title'], pr_data['body'], diff)
+    except Exception as e:
+        app.logger.error(f"Error in AI analysis: {str(e)}")
+        analysis = {
+            "summary": "AI analysis failed",
+            "impact": "Unknown",
+            "code_quality": "Unable to assess",
+            "suggestions": "No suggestions available due to analysis failure",
+            "related_issues": "Unable to identify related issues"
+        }
+    
     summary = f"""
-    <h3 class="text-xl font-bold mb-2">Pull Request Summary</h3>
-    <p><strong>Title:</strong> {pr_data['title']}</p>
-    <p><strong>Number:</strong> #{pr_number}</p>
-    <p><strong>State:</strong> {pr_data['state']}</p>
-    <p><strong>Created by:</strong> {pr_data['user']['login']}</p>
-    <p><strong>Created at:</strong> {pr_data['created_at']}</p>
-    <h4 class="text-lg font-semibold mt-4 mb-2">Description:</h4>
-    <div class="bg-gray-100 p-2 rounded">{pr_data['body']}</div>
-    <h4 class="text-lg font-semibold mt-4 mb-2">Changes:</h4>
-    <pre class="bg-gray-100 p-2 rounded overflow-x-auto"><code>{diff}</code></pre>
+    <div class="space-y-4 overflow-y-auto max-h-full">
+        <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Pull Request Context</h3>
+            <p><strong>Title:</strong> {pr_data['title']}</p>
+            <p><strong>Number:</strong> #{pr_number}</p>
+            <p><strong>State:</strong> {pr_data['state']}</p>
+            <p><strong>Created by:</strong> {pr_data['user']['login']}</p>
+            <p><strong>Created at:</strong> {pr_data['created_at']}</p>
+        </div>
+        
+        <div class="bg-green-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">AI Analysis</h3>
+            <p><strong>Summary:</strong> {analysis['summary']}</p>
+            <p><strong>Impact:</strong> {analysis['impact']}</p>
+            <p><strong>Code Quality:</strong> {analysis['code_quality']}</p>
+            <p><strong>Suggestions:</strong> {analysis['suggestions']}</p>
+            <p><strong>Related Issues:</strong> {analysis['related_issues']}</p>
+        </div>
+        
+        <div class="bg-yellow-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Description</h3>
+            <div class="whitespace-pre-wrap">{pr_data['body']}</div>
+        </div>
+        
+        <div class="bg-red-50 p-4 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Changes</h3>
+            <pre class="overflow-x-auto max-h-60 text-sm"><code>{diff}</code></pre>
+        </div>
+    </div>
     """
     return summary
 

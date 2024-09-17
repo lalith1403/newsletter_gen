@@ -36052,3 +36052,604 @@ Processed commit successfully
 127.0.0.1 - - [17/Sep/2024 17:09:14] "POST /summarize HTTP/1.1" 200 -
 Processed commit successfully
 127.0.0.1 - - [17/Sep/2024 17:09:15] "POST /summarize HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 to 2024-09-17
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 17:11:00] "POST / HTTP/1.1" 200 -
+Processing commit: e248c1d7ebe437094d42d6cad0acf5ffd0a27cad
+Raw item data: {
+  "author": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/28599820?v=4",
+    "events_url": "https://api.github.com/users/ankurneog/events{/privacy}",
+    "followers_url": "https://api.github.com/users/ankurneog/followers",
+    "following_url": "https://api.github.com/users/ankurneog/following{/other_user}",
+    "gists_url": "https://api.github.com/users/ankurneog/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/ankurneog",
+    "id": 28599820,
+    "login": "ankurneog",
+    "node_id": "MDQ6VXNlcjI4NTk5ODIw",
+    "organizations_url": "https://api.github.com/users/ankurneog/orgs",
+    "received_events_url": "https://api.github.com/users/ankurneog/received_events",
+    "repos_url": "https://api.github.com/users/ankurneog/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/ankurneog/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/ankurneog/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/ankurneog"
+  },
+  "comments_url": "https://api.github.com/repos/pytorch/pytorch/commits/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad/comments",
+  "commit": {
+    "author": {
+      "date": "2024-09-17T04:39:08Z",
+      "email": "anneog@habana.ai",
+      "name": "ankurneog"
+    },
+    "comment_count": 0,
+    "committer": {
+      "date": "2024-09-17T04:39:08Z",
+      "email": "pytorchmergebot@users.noreply.github.com",
+      "name": "PyTorch MergeBot"
+    },
+    "message": "Update real device in FSDP state_dict_utils (#134994)\n\n## Motivation\nThe default device for tensor.device both for sharded as well as non sharded is set to cuda by default. Hence while checking the FSDP UTs we see the following errors. This change updates the actual device type based on the created tensor.\n\n```\n[rank3]   File \"/root/repos/pytorch-training-tests/tests/pytorch/v2.4.0/distributed_hpu/fsdp/test_fsdp_dtensor_state_dict.py\", line 143, in test_dtensor_sharded_tensor_state_dict_identical\n[rank3]     sharded_tensor_sd = ref_model.state_dict()\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py\", line 1944, in state_dict\n[rank3]     hook_result = hook(self, destination, prefix, local_metadata)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n[rank3]     return func(*args, **kwargs)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/fsdp/_state_dict_utils.py\", line 752, in _post_state_dict_hook\n[rank3]     tensor.device,\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/typing_extensions.py\", line 2853, in wrapper\n[rank3]     return arg(*args, **kwargs)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/sharded_tensor/api.py\", line 1152, in __torch_function__\n[rank3]     return dispatch(st_instance, func)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/sharded_tensor/api.py\", line 1134, in dispatch\n[rank3]     return _SHARDED_OPS[func](types, args, kwargs, st._process_group)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/op_registry_utils.py\", line 33, in wrapper\n[rank3]     return wrapped_func(types, args, kwargs, process_group)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/sharded_tensor/_ops/tensor_ops.py\", line 52, in tensor_device\n[rank3]     dev = torch.device(torch.cuda.current_device())\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py\", line 878, in current_device\n[rank3]     _lazy_init()\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py\", line 305, in _lazy_init\n[rank3]     raise AssertionError(\"Torch not compiled with CUDA enabled\")\n[rank3] AssertionError: Torch not compiled with CUDA enabled\n````\n\nPull Request resolved: https://github.com/pytorch/pytorch/pull/134994\nApproved by: https://github.com/fegin",
+    "tree": {
+      "sha": "60c6a13e9369e2c9ea3d14375a5b645c8f397af1",
+      "url": "https://api.github.com/repos/pytorch/pytorch/git/trees/60c6a13e9369e2c9ea3d14375a5b645c8f397af1"
+    },
+    "url": "https://api.github.com/repos/pytorch/pytorch/git/commits/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad",
+    "verification": {
+      "payload": null,
+      "reason": "unsigned",
+      "signature": null,
+      "verified": false
+    }
+  },
+  "committer": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/97764156?v=4",
+    "events_url": "https://api.github.com/users/pytorchmergebot/events{/privacy}",
+    "followers_url": "https://api.github.com/users/pytorchmergebot/followers",
+    "following_url": "https://api.github.com/users/pytorchmergebot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/pytorchmergebot/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/pytorchmergebot",
+    "id": 97764156,
+    "login": "pytorchmergebot",
+    "node_id": "U_kgDOBdPDPA",
+    "organizations_url": "https://api.github.com/users/pytorchmergebot/orgs",
+    "received_events_url": "https://api.github.com/users/pytorchmergebot/received_events",
+    "repos_url": "https://api.github.com/users/pytorchmergebot/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/pytorchmergebot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/pytorchmergebot/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/pytorchmergebot"
+  },
+  "html_url": "https://github.com/pytorch/pytorch/commit/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad",
+  "node_id": "C_kwDOA-j9z9oAKGUyNDhjMWQ3ZWJlNDM3MDk0ZDQyZDZjYWQwYWNmNWZmZDBhMjdjYWQ",
+  "parents": [
+    {
+      "html_url": "https://github.com/pytorch/pytorch/commit/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+      "sha": "408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+      "url": "https://api.github.com/repos/pytorch/pytorch/commits/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a"
+    }
+  ],
+  "sha": "e248c1d7ebe437094d42d6cad0acf5ffd0a27cad",
+  "url": "https://api.github.com/repos/pytorch/pytorch/commits/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad"
+}
+Fetching diff for commit e248c1d7ebe437094d42d6cad0acf5ffd0a27cad in repo pytorch/pytorch
+Error processing commit: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+Traceback (most recent call last):
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py", line 100, in summarize
+    summary = process_commit(item_data)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py", line 123, in process_commit
+    analysis = analyze_code_changes(commit_data['commit']['message'], diff)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/llm_integration.py", line 17, in analyze_code_changes
+    response = openai.ChatCompletion.create(
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/openai/lib/_old_api.py", line 39, in __call__
+    raise APIRemovedInV1(symbol=self._symbol)
+openai.lib._old_api.APIRemovedInV1: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+
+127.0.0.1 - - [17/Sep/2024 17:11:05] "[31m[1mPOST /summarize HTTP/1.1[0m" 400 -
+Processing commit: e248c1d7ebe437094d42d6cad0acf5ffd0a27cad
+Raw item data: {
+  "author": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/28599820?v=4",
+    "events_url": "https://api.github.com/users/ankurneog/events{/privacy}",
+    "followers_url": "https://api.github.com/users/ankurneog/followers",
+    "following_url": "https://api.github.com/users/ankurneog/following{/other_user}",
+    "gists_url": "https://api.github.com/users/ankurneog/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/ankurneog",
+    "id": 28599820,
+    "login": "ankurneog",
+    "node_id": "MDQ6VXNlcjI4NTk5ODIw",
+    "organizations_url": "https://api.github.com/users/ankurneog/orgs",
+    "received_events_url": "https://api.github.com/users/ankurneog/received_events",
+    "repos_url": "https://api.github.com/users/ankurneog/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/ankurneog/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/ankurneog/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/ankurneog"
+  },
+  "comments_url": "https://api.github.com/repos/pytorch/pytorch/commits/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad/comments",
+  "commit": {
+    "author": {
+      "date": "2024-09-17T04:39:08Z",
+      "email": "anneog@habana.ai",
+      "name": "ankurneog"
+    },
+    "comment_count": 0,
+    "committer": {
+      "date": "2024-09-17T04:39:08Z",
+      "email": "pytorchmergebot@users.noreply.github.com",
+      "name": "PyTorch MergeBot"
+    },
+    "message": "Update real device in FSDP state_dict_utils (#134994)\n\n## Motivation\nThe default device for tensor.device both for sharded as well as non sharded is set to cuda by default. Hence while checking the FSDP UTs we see the following errors. This change updates the actual device type based on the created tensor.\n\n```\n[rank3]   File \"/root/repos/pytorch-training-tests/tests/pytorch/v2.4.0/distributed_hpu/fsdp/test_fsdp_dtensor_state_dict.py\", line 143, in test_dtensor_sharded_tensor_state_dict_identical\n[rank3]     sharded_tensor_sd = ref_model.state_dict()\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py\", line 1944, in state_dict\n[rank3]     hook_result = hook(self, destination, prefix, local_metadata)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n[rank3]     return func(*args, **kwargs)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/fsdp/_state_dict_utils.py\", line 752, in _post_state_dict_hook\n[rank3]     tensor.device,\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/typing_extensions.py\", line 2853, in wrapper\n[rank3]     return arg(*args, **kwargs)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/sharded_tensor/api.py\", line 1152, in __torch_function__\n[rank3]     return dispatch(st_instance, func)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/sharded_tensor/api.py\", line 1134, in dispatch\n[rank3]     return _SHARDED_OPS[func](types, args, kwargs, st._process_group)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/op_registry_utils.py\", line 33, in wrapper\n[rank3]     return wrapped_func(types, args, kwargs, process_group)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/sharded_tensor/_ops/tensor_ops.py\", line 52, in tensor_device\n[rank3]     dev = torch.device(torch.cuda.current_device())\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py\", line 878, in current_device\n[rank3]     _lazy_init()\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py\", line 305, in _lazy_init\n[rank3]     raise AssertionError(\"Torch not compiled with CUDA enabled\")\n[rank3] AssertionError: Torch not compiled with CUDA enabled\n````\n\nPull Request resolved: https://github.com/pytorch/pytorch/pull/134994\nApproved by: https://github.com/fegin",
+    "tree": {
+      "sha": "60c6a13e9369e2c9ea3d14375a5b645c8f397af1",
+      "url": "https://api.github.com/repos/pytorch/pytorch/git/trees/60c6a13e9369e2c9ea3d14375a5b645c8f397af1"
+    },
+    "url": "https://api.github.com/repos/pytorch/pytorch/git/commits/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad",
+    "verification": {
+      "payload": null,
+      "reason": "unsigned",
+      "signature": null,
+      "verified": false
+    }
+  },
+  "committer": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/97764156?v=4",
+    "events_url": "https://api.github.com/users/pytorchmergebot/events{/privacy}",
+    "followers_url": "https://api.github.com/users/pytorchmergebot/followers",
+    "following_url": "https://api.github.com/users/pytorchmergebot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/pytorchmergebot/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/pytorchmergebot",
+    "id": 97764156,
+    "login": "pytorchmergebot",
+    "node_id": "U_kgDOBdPDPA",
+    "organizations_url": "https://api.github.com/users/pytorchmergebot/orgs",
+    "received_events_url": "https://api.github.com/users/pytorchmergebot/received_events",
+    "repos_url": "https://api.github.com/users/pytorchmergebot/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/pytorchmergebot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/pytorchmergebot/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/pytorchmergebot"
+  },
+  "html_url": "https://github.com/pytorch/pytorch/commit/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad",
+  "node_id": "C_kwDOA-j9z9oAKGUyNDhjMWQ3ZWJlNDM3MDk0ZDQyZDZjYWQwYWNmNWZmZDBhMjdjYWQ",
+  "parents": [
+    {
+      "html_url": "https://github.com/pytorch/pytorch/commit/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+      "sha": "408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+      "url": "https://api.github.com/repos/pytorch/pytorch/commits/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a"
+    }
+  ],
+  "sha": "e248c1d7ebe437094d42d6cad0acf5ffd0a27cad",
+  "url": "https://api.github.com/repos/pytorch/pytorch/commits/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad"
+}
+Fetching diff for commit e248c1d7ebe437094d42d6cad0acf5ffd0a27cad in repo pytorch/pytorch
+Error processing commit: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+Traceback (most recent call last):
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py", line 100, in summarize
+    summary = process_commit(item_data)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py", line 123, in process_commit
+    analysis = analyze_code_changes(commit_data['commit']['message'], diff)
+  File "/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/llm_integration.py", line 17, in analyze_code_changes
+    response = openai.ChatCompletion.create(
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/gh_newsletter/lib/python3.9/site-packages/openai/lib/_old_api.py", line 39, in __call__
+    raise APIRemovedInV1(symbol=self._symbol)
+openai.lib._old_api.APIRemovedInV1: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+
+127.0.0.1 - - [17/Sep/2024 17:11:40] "[31m[1mPOST /summarize HTTP/1.1[0m" 400 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py', reloading
+ * Restarting with stat
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 to 2024-09-17
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 17:14:28] "POST / HTTP/1.1" 200 -
+Processing commit: e248c1d7ebe437094d42d6cad0acf5ffd0a27cad
+Raw item data: {
+  "author": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/28599820?v=4",
+    "events_url": "https://api.github.com/users/ankurneog/events{/privacy}",
+    "followers_url": "https://api.github.com/users/ankurneog/followers",
+    "following_url": "https://api.github.com/users/ankurneog/following{/other_user}",
+    "gists_url": "https://api.github.com/users/ankurneog/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/ankurneog",
+    "id": 28599820,
+    "login": "ankurneog",
+    "node_id": "MDQ6VXNlcjI4NTk5ODIw",
+    "organizations_url": "https://api.github.com/users/ankurneog/orgs",
+    "received_events_url": "https://api.github.com/users/ankurneog/received_events",
+    "repos_url": "https://api.github.com/users/ankurneog/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/ankurneog/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/ankurneog/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/ankurneog"
+  },
+  "comments_url": "https://api.github.com/repos/pytorch/pytorch/commits/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad/comments",
+  "commit": {
+    "author": {
+      "date": "2024-09-17T04:39:08Z",
+      "email": "anneog@habana.ai",
+      "name": "ankurneog"
+    },
+    "comment_count": 0,
+    "committer": {
+      "date": "2024-09-17T04:39:08Z",
+      "email": "pytorchmergebot@users.noreply.github.com",
+      "name": "PyTorch MergeBot"
+    },
+    "message": "Update real device in FSDP state_dict_utils (#134994)\n\n## Motivation\nThe default device for tensor.device both for sharded as well as non sharded is set to cuda by default. Hence while checking the FSDP UTs we see the following errors. This change updates the actual device type based on the created tensor.\n\n```\n[rank3]   File \"/root/repos/pytorch-training-tests/tests/pytorch/v2.4.0/distributed_hpu/fsdp/test_fsdp_dtensor_state_dict.py\", line 143, in test_dtensor_sharded_tensor_state_dict_identical\n[rank3]     sharded_tensor_sd = ref_model.state_dict()\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py\", line 1944, in state_dict\n[rank3]     hook_result = hook(self, destination, prefix, local_metadata)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n[rank3]     return func(*args, **kwargs)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/fsdp/_state_dict_utils.py\", line 752, in _post_state_dict_hook\n[rank3]     tensor.device,\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/typing_extensions.py\", line 2853, in wrapper\n[rank3]     return arg(*args, **kwargs)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/sharded_tensor/api.py\", line 1152, in __torch_function__\n[rank3]     return dispatch(st_instance, func)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/sharded_tensor/api.py\", line 1134, in dispatch\n[rank3]     return _SHARDED_OPS[func](types, args, kwargs, st._process_group)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/op_registry_utils.py\", line 33, in wrapper\n[rank3]     return wrapped_func(types, args, kwargs, process_group)\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/distributed/_shard/sharded_tensor/_ops/tensor_ops.py\", line 52, in tensor_device\n[rank3]     dev = torch.device(torch.cuda.current_device())\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py\", line 878, in current_device\n[rank3]     _lazy_init()\n[rank3]   File \"/usr/local/lib/python3.10/dist-packages/torch/cuda/__init__.py\", line 305, in _lazy_init\n[rank3]     raise AssertionError(\"Torch not compiled with CUDA enabled\")\n[rank3] AssertionError: Torch not compiled with CUDA enabled\n````\n\nPull Request resolved: https://github.com/pytorch/pytorch/pull/134994\nApproved by: https://github.com/fegin",
+    "tree": {
+      "sha": "60c6a13e9369e2c9ea3d14375a5b645c8f397af1",
+      "url": "https://api.github.com/repos/pytorch/pytorch/git/trees/60c6a13e9369e2c9ea3d14375a5b645c8f397af1"
+    },
+    "url": "https://api.github.com/repos/pytorch/pytorch/git/commits/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad",
+    "verification": {
+      "payload": null,
+      "reason": "unsigned",
+      "signature": null,
+      "verified": false
+    }
+  },
+  "committer": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/97764156?v=4",
+    "events_url": "https://api.github.com/users/pytorchmergebot/events{/privacy}",
+    "followers_url": "https://api.github.com/users/pytorchmergebot/followers",
+    "following_url": "https://api.github.com/users/pytorchmergebot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/pytorchmergebot/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/pytorchmergebot",
+    "id": 97764156,
+    "login": "pytorchmergebot",
+    "node_id": "U_kgDOBdPDPA",
+    "organizations_url": "https://api.github.com/users/pytorchmergebot/orgs",
+    "received_events_url": "https://api.github.com/users/pytorchmergebot/received_events",
+    "repos_url": "https://api.github.com/users/pytorchmergebot/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/pytorchmergebot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/pytorchmergebot/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/pytorchmergebot"
+  },
+  "html_url": "https://github.com/pytorch/pytorch/commit/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad",
+  "node_id": "C_kwDOA-j9z9oAKGUyNDhjMWQ3ZWJlNDM3MDk0ZDQyZDZjYWQwYWNmNWZmZDBhMjdjYWQ",
+  "parents": [
+    {
+      "html_url": "https://github.com/pytorch/pytorch/commit/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+      "sha": "408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+      "url": "https://api.github.com/repos/pytorch/pytorch/commits/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a"
+    }
+  ],
+  "sha": "e248c1d7ebe437094d42d6cad0acf5ffd0a27cad",
+  "url": "https://api.github.com/repos/pytorch/pytorch/commits/e248c1d7ebe437094d42d6cad0acf5ffd0a27cad"
+}
+Fetching diff for commit e248c1d7ebe437094d42d6cad0acf5ffd0a27cad in repo pytorch/pytorch
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Processed commit successfully
+127.0.0.1 - - [17/Sep/2024 17:14:33] "POST /summarize HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 to 2024-09-17
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 17:16:26] "POST / HTTP/1.1" 200 -
+Processing commit: 408fe41a45000ca244e3ca03d0e18de0ae3e0c9a
+Raw item data: {
+  "author": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/31293777?v=4",
+    "events_url": "https://api.github.com/users/wz337/events{/privacy}",
+    "followers_url": "https://api.github.com/users/wz337/followers",
+    "following_url": "https://api.github.com/users/wz337/following{/other_user}",
+    "gists_url": "https://api.github.com/users/wz337/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/wz337",
+    "id": 31293777,
+    "login": "wz337",
+    "node_id": "MDQ6VXNlcjMxMjkzNzc3",
+    "organizations_url": "https://api.github.com/users/wz337/orgs",
+    "received_events_url": "https://api.github.com/users/wz337/received_events",
+    "repos_url": "https://api.github.com/users/wz337/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/wz337/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/wz337/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/wz337"
+  },
+  "comments_url": "https://api.github.com/repos/pytorch/pytorch/commits/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a/comments",
+  "commit": {
+    "author": {
+      "date": "2024-09-16T20:10:13Z",
+      "email": "wz337@cornell.edu",
+      "name": "wz337"
+    },
+    "comment_count": 0,
+    "committer": {
+      "date": "2024-09-17T04:32:43Z",
+      "email": "pytorchmergebot@users.noreply.github.com",
+      "name": "PyTorch MergeBot"
+    },
+    "message": "[DSD][EZ] Minor update in _state_dict_utils.py (#136165)\n\nPull Request resolved: https://github.com/pytorch/pytorch/pull/136165\nApproved by: https://github.com/kwen2501\nghstack dependencies: #135725, #135763",
+    "tree": {
+      "sha": "0d3cc07f33e824b2290ff3bb2ce58e853f8cb6ca",
+      "url": "https://api.github.com/repos/pytorch/pytorch/git/trees/0d3cc07f33e824b2290ff3bb2ce58e853f8cb6ca"
+    },
+    "url": "https://api.github.com/repos/pytorch/pytorch/git/commits/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+    "verification": {
+      "payload": null,
+      "reason": "unsigned",
+      "signature": null,
+      "verified": false
+    }
+  },
+  "committer": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/97764156?v=4",
+    "events_url": "https://api.github.com/users/pytorchmergebot/events{/privacy}",
+    "followers_url": "https://api.github.com/users/pytorchmergebot/followers",
+    "following_url": "https://api.github.com/users/pytorchmergebot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/pytorchmergebot/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/pytorchmergebot",
+    "id": 97764156,
+    "login": "pytorchmergebot",
+    "node_id": "U_kgDOBdPDPA",
+    "organizations_url": "https://api.github.com/users/pytorchmergebot/orgs",
+    "received_events_url": "https://api.github.com/users/pytorchmergebot/received_events",
+    "repos_url": "https://api.github.com/users/pytorchmergebot/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/pytorchmergebot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/pytorchmergebot/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/pytorchmergebot"
+  },
+  "html_url": "https://github.com/pytorch/pytorch/commit/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+  "node_id": "C_kwDOA-j9z9oAKDQwOGZlNDFhNDUwMDBjYTI0NGUzY2EwM2QwZTE4ZGUwYWUzZTBjOWE",
+  "parents": [
+    {
+      "html_url": "https://github.com/pytorch/pytorch/commit/dc82d274e61a5a9b1785b8b72b7edeb30b19a789",
+      "sha": "dc82d274e61a5a9b1785b8b72b7edeb30b19a789",
+      "url": "https://api.github.com/repos/pytorch/pytorch/commits/dc82d274e61a5a9b1785b8b72b7edeb30b19a789"
+    }
+  ],
+  "sha": "408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+  "url": "https://api.github.com/repos/pytorch/pytorch/commits/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a"
+}
+Fetching diff for commit 408fe41a45000ca244e3ca03d0e18de0ae3e0c9a in repo pytorch/pytorch
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Processed commit successfully
+127.0.0.1 - - [17/Sep/2024 17:16:42] "POST /summarize HTTP/1.1" 200 -
+Processing commit: 37a08b33bb86ad0fce3db6fc98f90c9e02d77cba
+Raw item data: {
+  "author": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/97764156?v=4",
+    "events_url": "https://api.github.com/users/pytorchmergebot/events{/privacy}",
+    "followers_url": "https://api.github.com/users/pytorchmergebot/followers",
+    "following_url": "https://api.github.com/users/pytorchmergebot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/pytorchmergebot/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/pytorchmergebot",
+    "id": 97764156,
+    "login": "pytorchmergebot",
+    "node_id": "U_kgDOBdPDPA",
+    "organizations_url": "https://api.github.com/users/pytorchmergebot/orgs",
+    "received_events_url": "https://api.github.com/users/pytorchmergebot/received_events",
+    "repos_url": "https://api.github.com/users/pytorchmergebot/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/pytorchmergebot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/pytorchmergebot/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/pytorchmergebot"
+  },
+  "comments_url": "https://api.github.com/repos/pytorch/pytorch/commits/37a08b33bb86ad0fce3db6fc98f90c9e02d77cba/comments",
+  "commit": {
+    "author": {
+      "date": "2024-09-16T23:59:56Z",
+      "email": "pytorchmergebot@users.noreply.github.com",
+      "name": "PyTorch MergeBot"
+    },
+    "comment_count": 0,
+    "committer": {
+      "date": "2024-09-16T23:59:56Z",
+      "email": "pytorchmergebot@users.noreply.github.com",
+      "name": "PyTorch MergeBot"
+    },
+    "message": "Revert \"fix compiled_autograd deadlock throw (#135795)\"\n\nThis reverts commit 00dc7d435652ad66e9d2feb2660928b632281a98.\n\nReverted https://github.com/pytorch/pytorch/pull/135795 on behalf of https://github.com/facebook-github-bot due to Diff reverted internally ([comment](https://github.com/pytorch/pytorch/pull/135795#issuecomment-2354233619))",
+    "tree": {
+      "sha": "7ff7cade0650776506db89519a4175343089e4df",
+      "url": "https://api.github.com/repos/pytorch/pytorch/git/trees/7ff7cade0650776506db89519a4175343089e4df"
+    },
+    "url": "https://api.github.com/repos/pytorch/pytorch/git/commits/37a08b33bb86ad0fce3db6fc98f90c9e02d77cba",
+    "verification": {
+      "payload": null,
+      "reason": "unsigned",
+      "signature": null,
+      "verified": false
+    }
+  },
+  "committer": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/97764156?v=4",
+    "events_url": "https://api.github.com/users/pytorchmergebot/events{/privacy}",
+    "followers_url": "https://api.github.com/users/pytorchmergebot/followers",
+    "following_url": "https://api.github.com/users/pytorchmergebot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/pytorchmergebot/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/pytorchmergebot",
+    "id": 97764156,
+    "login": "pytorchmergebot",
+    "node_id": "U_kgDOBdPDPA",
+    "organizations_url": "https://api.github.com/users/pytorchmergebot/orgs",
+    "received_events_url": "https://api.github.com/users/pytorchmergebot/received_events",
+    "repos_url": "https://api.github.com/users/pytorchmergebot/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/pytorchmergebot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/pytorchmergebot/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/pytorchmergebot"
+  },
+  "html_url": "https://github.com/pytorch/pytorch/commit/37a08b33bb86ad0fce3db6fc98f90c9e02d77cba",
+  "node_id": "C_kwDOA-j9z9oAKDM3YTA4YjMzYmI4NmFkMGZjZTNkYjZmYzk4ZjkwYzllMDJkNzdjYmE",
+  "parents": [
+    {
+      "html_url": "https://github.com/pytorch/pytorch/commit/071da87cd72e4dac15cda55f68c5d6b26574e733",
+      "sha": "071da87cd72e4dac15cda55f68c5d6b26574e733",
+      "url": "https://api.github.com/repos/pytorch/pytorch/commits/071da87cd72e4dac15cda55f68c5d6b26574e733"
+    }
+  ],
+  "sha": "37a08b33bb86ad0fce3db6fc98f90c9e02d77cba",
+  "url": "https://api.github.com/repos/pytorch/pytorch/commits/37a08b33bb86ad0fce3db6fc98f90c9e02d77cba"
+}
+Fetching diff for commit 37a08b33bb86ad0fce3db6fc98f90c9e02d77cba in repo pytorch/pytorch
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Processed commit successfully
+127.0.0.1 - - [17/Sep/2024 17:17:48] "POST /summarize HTTP/1.1" 200 -
+ * Detected change in '/Users/lalithnarayanc/Desktop/Code/newsletter/repo-newsletter-generator/src/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 228-505-171
+Index route accessed
+POST request received
+Generating newsletter for https://github.com/pytorch/pytorch from 2024-09-10 to 2024-09-17
+Newsletter generated successfully
+127.0.0.1 - - [17/Sep/2024 17:18:24] "POST / HTTP/1.1" 200 -
+Processing commit: 408fe41a45000ca244e3ca03d0e18de0ae3e0c9a
+Raw item data: {
+  "author": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/31293777?v=4",
+    "events_url": "https://api.github.com/users/wz337/events{/privacy}",
+    "followers_url": "https://api.github.com/users/wz337/followers",
+    "following_url": "https://api.github.com/users/wz337/following{/other_user}",
+    "gists_url": "https://api.github.com/users/wz337/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/wz337",
+    "id": 31293777,
+    "login": "wz337",
+    "node_id": "MDQ6VXNlcjMxMjkzNzc3",
+    "organizations_url": "https://api.github.com/users/wz337/orgs",
+    "received_events_url": "https://api.github.com/users/wz337/received_events",
+    "repos_url": "https://api.github.com/users/wz337/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/wz337/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/wz337/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/wz337"
+  },
+  "comments_url": "https://api.github.com/repos/pytorch/pytorch/commits/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a/comments",
+  "commit": {
+    "author": {
+      "date": "2024-09-16T20:10:13Z",
+      "email": "wz337@cornell.edu",
+      "name": "wz337"
+    },
+    "comment_count": 0,
+    "committer": {
+      "date": "2024-09-17T04:32:43Z",
+      "email": "pytorchmergebot@users.noreply.github.com",
+      "name": "PyTorch MergeBot"
+    },
+    "message": "[DSD][EZ] Minor update in _state_dict_utils.py (#136165)\n\nPull Request resolved: https://github.com/pytorch/pytorch/pull/136165\nApproved by: https://github.com/kwen2501\nghstack dependencies: #135725, #135763",
+    "tree": {
+      "sha": "0d3cc07f33e824b2290ff3bb2ce58e853f8cb6ca",
+      "url": "https://api.github.com/repos/pytorch/pytorch/git/trees/0d3cc07f33e824b2290ff3bb2ce58e853f8cb6ca"
+    },
+    "url": "https://api.github.com/repos/pytorch/pytorch/git/commits/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+    "verification": {
+      "payload": null,
+      "reason": "unsigned",
+      "signature": null,
+      "verified": false
+    }
+  },
+  "committer": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/97764156?v=4",
+    "events_url": "https://api.github.com/users/pytorchmergebot/events{/privacy}",
+    "followers_url": "https://api.github.com/users/pytorchmergebot/followers",
+    "following_url": "https://api.github.com/users/pytorchmergebot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/pytorchmergebot/gists{/gist_id}",
+    "gravatar_id": "",
+    "html_url": "https://github.com/pytorchmergebot",
+    "id": 97764156,
+    "login": "pytorchmergebot",
+    "node_id": "U_kgDOBdPDPA",
+    "organizations_url": "https://api.github.com/users/pytorchmergebot/orgs",
+    "received_events_url": "https://api.github.com/users/pytorchmergebot/received_events",
+    "repos_url": "https://api.github.com/users/pytorchmergebot/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/pytorchmergebot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/pytorchmergebot/subscriptions",
+    "type": "User",
+    "url": "https://api.github.com/users/pytorchmergebot"
+  },
+  "html_url": "https://github.com/pytorch/pytorch/commit/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+  "node_id": "C_kwDOA-j9z9oAKDQwOGZlNDFhNDUwMDBjYTI0NGUzY2EwM2QwZTE4ZGUwYWUzZTBjOWE",
+  "parents": [
+    {
+      "html_url": "https://github.com/pytorch/pytorch/commit/dc82d274e61a5a9b1785b8b72b7edeb30b19a789",
+      "sha": "dc82d274e61a5a9b1785b8b72b7edeb30b19a789",
+      "url": "https://api.github.com/repos/pytorch/pytorch/commits/dc82d274e61a5a9b1785b8b72b7edeb30b19a789"
+    }
+  ],
+  "sha": "408fe41a45000ca244e3ca03d0e18de0ae3e0c9a",
+  "url": "https://api.github.com/repos/pytorch/pytorch/commits/408fe41a45000ca244e3ca03d0e18de0ae3e0c9a"
+}
+Fetching diff for commit 408fe41a45000ca244e3ca03d0e18de0ae3e0c9a in repo pytorch/pytorch
+Processed commit successfully
+127.0.0.1 - - [17/Sep/2024 17:18:26] "POST /summarize HTTP/1.1" 200 -
