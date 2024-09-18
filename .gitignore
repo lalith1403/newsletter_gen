@@ -11,3 +11,5 @@ ENV/
 .DS_Store
 Thumbs.db
 config.ini
+
+dspy_tutorial.ipynb

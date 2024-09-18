@@ -35,9 +35,22 @@
                 </div>
             </div>
 
-            <!-- Column 2: List of Issues, Commits, and PRs -->
+            <!-- Column 2: Recent Activity Summary -->
             <div class="bg-white p-4 rounded shadow overflow-y-auto" style="max-height: 90vh;">
-                <h2 class="text-xl font-bold mb-4">Recent Activity</h2>
+                <h2 class="text-xl font-bold mb-4">Recent Activity Summary</h2>
+                <div id="activity-summary">
+                    <p><strong>Commits:</strong> {{ recent_activity_summary.commits }}</p>
+                    <p><strong>Issues:</strong> {{ recent_activity_summary.issues }}</p>
+                    <p><strong>Pull Requests:</strong> {{ recent_activity_summary.pull_requests }}</p>
+                    <h3 class="font-semibold mt-4">Top Contributors</h3>
+                    <ul>
+                        {% for contributor, count in recent_activity_summary.top_contributors %}
+                        <li>{{ contributor }}: {{ count }} commits</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <h3 class="font-semibold mt-4">Detailed Activity</h3>
                 <div id="activity-list">
                     <h3 class="font-semibold mt-2">Commits</h3>
                     <ul class="space-y-2">
@@ -75,10 +88,23 @@
             </div>
 
             <!-- Column 3: Summary -->
-            <div class="bg-white p-4 rounded shadow" style="height: 90vh; overflow-y: hidden;">
+            <div class="bg-white p-4 rounded shadow" style="height: 90vh; overflow-y: auto;">
                 <h2 class="text-xl font-bold mb-4">Summary</h2>
-                <div id="summary-content" class="overflow-y-auto" style="height: calc(100% - 2rem);">
-                    <p>Click on an item in the second column to see its summary here.</p>
+                <div id="summary-content">
+                    <h3 class="text-lg font-semibold mt-2">Bug Fixes</h3>
+                    <p>{{ summary.bug_fixes }}</p>
+
+                    <h3 class="text-lg font-semibold mt-4">Feature Additions</h3>
+                    <p>{{ summary.feature_additions }}</p>
+
+                    <h3 class="text-lg font-semibold mt-4">Performance Improvements</h3>
+                    <p>{{ summary.performance_improvements }}</p>
+
+                    <h3 class="text-lg font-semibold mt-4">Refactoring</h3>
+                    <p>{{ summary.refactoring }}</p>
+
+                    <h3 class="text-lg font-semibold mt-4">Other Changes</h3>
+                    <p>{{ summary.other }}</p>
                 </div>
             </div>
         </div>
